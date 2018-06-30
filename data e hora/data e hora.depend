@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1480885530 source:c:\users\user\documents\roboticahugo\hugoprojetos\data e hora\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
