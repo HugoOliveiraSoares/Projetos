@@ -1,11 +1,11 @@
 
 /*
   comandos:
-    - w : para frente
-    - s : para tras
-    - d : direita
-    - a : esuerda
-    - f : for OFF
+    - F : para frente
+    - B : para tras
+    - R : direita
+    - L : esuerda
+    - S : for OFF
 
 */
 #include <Servo.h>
@@ -16,7 +16,7 @@ const int dirA = 7;
 Servo s;
 
 byte b;
-int pos;
+int pos = 90;
 
 // ------------------------------------------------
 
@@ -28,9 +28,10 @@ void setup(){
   pinMode(motorA, OUTPUT);
   pinMode(dirA, OUTPUT);
   
-  s.write(90);
+  s.write(pos);
   
 }
+
 
 // ------------------------------------------------
 
@@ -41,51 +42,70 @@ void loop(){
     
     switch(b){
       // Para frente-------------------------------
-      case 'w':
+      case 'F':
        Serial.println("frente");
-       for(int x =0; x <= 200; x++)
-       { 
-          digitalWrite(dirA, HIGH); //SENTIDO DE ROTACAO
-          analogWrite(motorA, x); //VELOCIDADE
-          //Serial.println("frente");  
-          delay(10);
-       }
-        break;
+       digitalWrite(dirA, HIGH); //SENTIDO DE ROTACAO
+       analogWrite(motorA, 150); //VELOCIDADE
+       
+       break;
       
       // Para tras-------------------------------
-      case 's':
-        Serial.println("tras");
-       for(int x =0; x <= 200; x++)
-       { 
-          digitalWrite(dirA, LOW); //SENTIDO DE ROTACAO
-          analogWrite(motorA, x); //VELOCIDADE
-          //Serial.println("tras");  
-          delay(10);
-       }
+      case 'B':
+       Serial.println("tras");
+       digitalWrite(dirA, LOW); //SENTIDO DE ROTACAO
+       analogWrite(motorA, 150); //VELOCIDADE
        
-        break;
+       break;
       
       //  Direita--------------------------------
-      case 'a':
+      case 'L':
         Serial.println("esquerda");
-        for(pos = 90;pos > 0; pos--)
+        digitalWrite(dirA, HIGH);
+        analogWrite(motorA, 150);
+        for(pos = 90;pos > 75; pos--)
         {
             s.write(pos);
             delay(10);
         }
         break;
       // Esquerda------------------------------
-      case 'd':
+      case 'R':
         Serial.println("direita");
-        for(pos = 90; pos < 180;pos++)
+        digitalWrite(dirA, HIGH);
+        analogWrite(motorA, 150);
+        for(pos = 90; pos < 110;pos++)
         {
           s.write(pos);
           delay(10);
         }
         
          break;
+       //------------------------------------------  
+       case 'H':
+      Serial.println("backLeft");
+      digitalWrite(dirA, LOW);
+      analogWrite(motorA, 150);
+      for(pos = 90; pos > 75;pos--)
+      {
+        s.write(pos);
+        delay(10);
+      }
+      
+       break;
+
+
+       case 'J':
+    Serial.println("backRight");
+    digitalWrite(dirA, LOW);
+    analogWrite(motorA, 150);
+    for(pos = 90; pos < 100;pos++)
+    {
+      s.write(pos);
+      delay(10);
+    }
+       break;
       // Off------------------------------------
-      case 'f':
+      case 'S':
         analogWrite(motorA, 0); //VELOCIDADE
         s.write(90);
         Serial.println("OFF");
