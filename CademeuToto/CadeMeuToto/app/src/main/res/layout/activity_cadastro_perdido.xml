@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadastroPerdido"
+    >
+
+    <ImageButton
+        android:id="@+id/btnimage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/selector"
+        android:src="@drawable/ic_add_photo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/txtNomeanimal"
+        app:layout_constraintStart_toStartOf="@+id/txtNomeanimal"
+        app:layout_constraintTop_toBottomOf="@+id/txtNomeanimal" />
+
+    <EditText
+        android:id="@+id/edtTipoAnimal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/txtTipoAnimal"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtTipoAnimal"
+        app:layout_constraintTop_toBottomOf="@+id/txtTipoAnimal" />
+
+    <EditText
+        android:id="@+id/edtIdade"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        app:layout_constraintEnd_toEndOf="@+id/edtTipoAnimal"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtTipoAnimal"
+        app:layout_constraintTop_toBottomOf="@+id/txtIdade" />
+
+    <EditText
+        android:id="@+id/edtCorPelo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        app:layout_constraintEnd_toEndOf="@+id/edtIdade"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtIdade"
+        app:layout_constraintTop_toBottomOf="@+id/txtCorPelo" />
+
+    <EditText
+        android:id="@+id/edtDetalhe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edtCorPelo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtCorPelo"
+        app:layout_constraintTop_toBottomOf="@+id/txtDetalhe" />
+
+    <Button
+        android:id="@+id/btnMostreOnde"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/mostre_onde_perdeu"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtDetalhe" />
+
+    <TextView
+        android:id="@+id/txtNomeanimal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:text="@string/nome_animal"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtNome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnimage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtTipoAnimal"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="Tipo do animal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtNome" />
+
+    <TextView
+        android:id="@+id/txtIdade"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/idade"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtIdade"
+        app:layout_constraintEnd_toEndOf="@+id/edtIdade"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="@+id/edtIdade"
+        app:layout_constraintTop_toBottomOf="@+id/edtTipoAnimal" />
+
+    <TextView
+        android:id="@+id/txtCorPelo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/cor_do_pelo"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/edtCorPelo"
+        app:layout_constraintStart_toStartOf="@+id/edtCorPelo"
+        app:layout_constraintTop_toBottomOf="@+id/edtIdade" />
+
+    <TextView
+        android:id="@+id/txtDetalhe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/detalhes"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtDetalhe"
+        app:layout_constraintEnd_toEndOf="@+id/edtDetalhe"
+        app:layout_constraintStart_toStartOf="@+id/edtDetalhe"
+        app:layout_constraintTop_toBottomOf="@+id/edtCorPelo" />
+
+</android.support.constraint.ConstraintLayout>

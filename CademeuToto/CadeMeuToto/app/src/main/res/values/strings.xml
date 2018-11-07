@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CadeMeuToto</string>
+    <string name="action_cancela">Cancelar</string>
+    <string name="perdi_meu_pet">Pet perdido</string>
+    <string name="perdi_meu_pet_sub">Informe as caracteristicas</string>
+    <string name="achei_um_pet">Achei um Pet</string>
+    <string name="nome_animal">Nome Do animal</string>
+    <string name="idade">Idade</string>
+    <string name="cor_do_pelo">Cor do pelo</string>
+    <string name="detalhes">Detalhes</string>
+    <string name="mostre_onde_perdeu">Mostre onde perdeu o Pet</string>
+    <string name="title_activity_informe_endereco">Informe o endereço</string>
+    <string name="enviar">Enviar</string>
+    <string name="dlg_erro">ERRO</string>
+    <string name="message_dlg_invalid">Ha campos vazios ou invalidos</string>
+    <string name="action_ok">Ok</string>
+
+</resources>
