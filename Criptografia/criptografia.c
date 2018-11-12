@@ -148,7 +148,7 @@ void ReceberArquivo_cript()
 
   printf("\n\nInstruções para importar um arquivo criptografado:");
   printf("\n\n 1 - Renomeie o arquivo para 'criptografado.txt'");
-  printf("\n\n 2 - Copie o arquivo para a pasta que sera  aberta a seguir");
+  printf("\n\n 2 - Copie o arquivo da pasta arquivo_gerado para a pasta que sera aberta a seguir");
   printf("\n\n 3 - Feche o explorador e retorne a aplicação");
   pause("\n\n Pressione Enter para abrir a pasta \n");
 
@@ -178,7 +178,7 @@ void Menu_Criptografar()
   int opcao;
   printf("\n\t\t\t >>> Criptografia de dados <<<\n");
   printf("\nCriptografar texto ou arquivo");
-  printf("\n\n 1 - Digitar texto");
+  printf("\n\n 1 - Digitar texto a ser criptografado");
   printf("\n\n 2 - Voltar ao menu principal");
   printf("\n\n Informe a opção desejada:\n");
   printf("  >>> ");
@@ -210,8 +210,8 @@ void menu()
   {
     system("clear");
     printf("\n\t\t\t >>> Criptografia de dados <<<");
-    printf("\n\n 1 - Criptografar arquivo");
-    printf("\n\n 2 - Receber arquivo");
+    printf("\n\n 1 - Criptografar mensagem");
+    printf("\n\n 2 - Receber arquivo para descriptografar");
     printf("\n\n 3 - Sair");
     printf("\n\n Informe a opção desejada:\n");
     printf("  >>> ");
