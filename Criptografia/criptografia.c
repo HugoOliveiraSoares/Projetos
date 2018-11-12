@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <dirent.h>
 
 //---Configuração da CHAVE------------------------
 char CHAVE[] = "AbCd";
@@ -14,6 +15,13 @@ int TAM_TEXTO = 100000;
 //------------------------------------------------------------
 
 int TEXTO_CRIPT[100000];
+
+void pause(char msg[])
+{
+  printf("%s\n", msg);
+  getchar();
+  setbuf(stdin, NULL);
+}
 
 bool Criptografar()
 {
@@ -83,85 +91,28 @@ bool Descriptografar()
 
 //-----------------------> MENUS <----------------------------------------------
 
-void Recebe_texto(char tipo[])
+void Recebe_texto()
 {
   char aux[TAM_TEXTO];
   bool ok;
   FILE *arq;
-  char palavra[100];
 
-  if (strcmp(tipo,"msg") == 0 )
+  printf("\n\n Receber texto para criptografar\n\n");
+  printf(" Digite o texto: ");
+  gets(aux);
+
+  if(strlen(aux) <= TAM_TEXTO)
   {
-    printf("\n\n Receber texto para criptografar\n\n");
-    printf(" Digite o texto: ");
-    gets(aux);
-
-    if(strlen(aux) <= TAM_TEXTO)
-    {
-      strcpy(TEXTO, aux);
-      printf(" Texto recebido com sucesso!\n");
-      printf("\n Criptografando texto ...\n");
-      ok = true;
-    }else
-    {
-      printf("\n ERRO!\n   O tamanho do texto exece o limite de caracteres!\n");
-      ok = false;
-      printf("\nPressione Enter para continuar\n");
-      getchar();
-      setbuf(stdin, NULL);
-    }
-//------END msg------
-  }else if(strcmp(tipo,"arquivo") == 0)
+    strcpy(TEXTO, aux);
+    printf("\n Texto recebido com sucesso!\n");
+    printf("\n Criptografando texto ...\n");
+    ok = true;
+  }else
   {
-    printf("\n\nInstruções para importar um arquivo de texto\n\n");
-    printf("\n\n 1 - Renomeie o arquivo para 'original.txt'");
-    printf("\n\n 2 - Copie o arquivo para a pasta que sera  aberta a seguir");
-    printf("\n\n 3 - Feche o explorador e retorne a aplicação");
-
-    printf("\n\n Pressione Enter para abrir a pasta \n");
-    getchar();
-    setbuf(stdin, NULL);
-
-    system("nemo /home/hugo/Documentos/Projetos/Criptografia/cript/arquivo_orig");
-
-    printf("\n Pressione Enter apos colar o arquivo na pasta \n");
-    getchar();
-    setbuf(stdin, NULL);
-    printf("\n Importando ARQUIVO...\n\n");
-
-    arq = fopen("cript/arquivo_orig/original.txt", "r");
-    if (arq == NULL)
-    {
-      printf("\n ERRO ao importar o arquivo\n");
-    }else
-    {
-      while (!feof(arq) )
-      {
-        fscanf(arq, "%s", palavra);
-        strcat(aux, " ");
-        strcat(aux, palavra);
-      }
-      fclose(arq);
-      if(strlen(aux) <= TAM_TEXTO)
-      {
-        strcpy(TEXTO, aux);
-        printf(" Texto recebido com sucesso!\n");
-        printf(" Criptografando texto ...\n\n");
-        ok = true;
-      }else
-      {
-        printf("\n ERRO!\n   O tamanho do texto exece o limite de caracteres!\n");
-        ok = false;
-        printf("\nPressione Enter para continuar\n");
-        getchar();
-        setbuf(stdin, NULL);
-      }
-    } //------End fopen arquivo------
-
-  }else //------End arquivo------
-  {
-    printf("ERRO ao receber texto\n");
-  }//------END if msg ou arquivo------------
+    printf("\n ERRO!\n   O tamanho do texto exece o limite de caracteres!\n");
+    ok = false;
+    pause("\nPressione Enter para continuar.");
+  }
 
   if (ok) // Se o texto foi recebido
   {
@@ -182,21 +133,15 @@ void Recebe_texto(char tipo[])
       }
       fclose(arq);
 
-      printf("\n Pressione Enter para abrir a pasta do arquivo gerado\n");
-      getchar();
-      setbuf(stdin, NULL);
+      pause("\n Pressione Enter para abrir a pasta do arquivo gerado.");
       system("nemo /home/hugo/Documentos/Projetos/Criptografia/cript/arquivo_gerado");
     }else
       printf("\n\n Não foi possivel criptografar o texto!\n\n");
     //-----END Criptografar-----
 
-  }//------ END ok -------------------
+  }//------- END ok -------------------
 
-  // printf("\nPressione Enter para continuar\n");
-  // getchar();
-  // setbuf(stdin, NULL);
-
-}//------End Recebe_texto-------------------------------------------------------
+}//---------- END Recebe_texto ----------
 
 void ReceberArquivo_cript()
 {
@@ -205,35 +150,24 @@ void ReceberArquivo_cript()
   printf("\n\n 1 - Renomeie o arquivo para 'criptografado.txt'");
   printf("\n\n 2 - Copie o arquivo para a pasta que sera  aberta a seguir");
   printf("\n\n 3 - Feche o explorador e retorne a aplicação");
-
-  printf("\n\n Pressione Enter para abrir a pasta \n");
-  getchar();
-  setbuf(stdin, NULL);
+  pause("\n\n Pressione Enter para abrir a pasta \n");
 
   system("nemo /home/hugo/Documentos/Projetos/Criptografia/cript/arquivo_recebidos");
-  printf("\n Pressione Enter apos colar o arquivo na pasta \n");
-  getchar();
-  setbuf(stdin, NULL);
+  pause(" Pressione Enter apos colar o arquivo na pasta \n");
 
-  printf("\n Importando ARQUIVO...\n\n");
+  printf(" Importando ARQUIVO...\n\n");
 
   if (Descriptografar() )
   {
     printf("\n Arquivo descriptografado com sucesso!\n");
-    printf("Pressione Enter para continuar\n");
-    getchar();
-    setbuf(stdin, NULL);
+    pause(" Pressione Enter para continuar\n");
     system("clear");
-    printf("\n%s\n\n", TEXTO);
-    printf("Pressione Enter para continuar\n");
-    getchar();
-    setbuf(stdin, NULL);
+    printf("\n%s\n\n",TEXTO);
+    pause("Pressione Enter para continuar\n");
   }else
   {
     printf("\n Não foi possivel descriptografar o arquivo!\n");
-    printf("Pressione Enter para continuar\n");
-    getchar();
-    setbuf(stdin, NULL);
+    pause("Pressione Enter para continuar\n");
   }//------ END Descriptografar ------------
 
 }//------END ReceberArquivo_cript-----------------------------------------------
@@ -245,8 +179,7 @@ void Menu_Criptografar()
   printf("\n\t\t\t >>> Criptografia de dados <<<\n");
   printf("\nCriptografar texto ou arquivo");
   printf("\n\n 1 - Digitar texto");
-  printf("\n\n 2 - Importar arquivo de texto (txt)");
-  printf("\n\n 3 - Voltar ao menu principal");
+  printf("\n\n 2 - Voltar ao menu principal");
   printf("\n\n Informe a opção desejada:\n");
   printf("  >>> ");
   scanf("%d", &opcao);
@@ -255,19 +188,15 @@ void Menu_Criptografar()
   {
     case 1:
       system("clear");
-      Recebe_texto("msg");
+      Recebe_texto();
       break;
 
     case 2:
-      system("clear");
-      Recebe_texto("arquivo");
       break;
 
-    case 3:
-      break;
   default:
-    printf("\n Opcao invalida! Aperte Enter e tente novamente...\n");
-    getchar();
+    pause("\n Opcao invalida! Aperte Enter e tente novamente...\n");
+    Menu_Criptografar();
 
   }//------END switch opcao------
 
@@ -276,6 +205,7 @@ void Menu_Criptografar()
 void menu()
 {
   int opcao;
+
   while (1)
   {
     system("clear");
@@ -306,7 +236,7 @@ void menu()
           break;
     default:
       printf("\n Opcao invalida! Aperte Enter e tente novamente...\n");
-      getchar();
+      pause("");
 
     }//------END switch opcao------
 
@@ -317,6 +247,26 @@ void menu()
 
 int main()
 {
+  DIR *dir1, *dir2, *dir3;
+  dir1 = opendir("cript");
+  dir2 = opendir("cript/arquivo_gerado");
+  dir3 = opendir("cript/arquivo_recebidos");
+
+  if (!dir1)
+  {
+    system("mkdir cript");
+  }
+
+  if (!dir2)
+  {
+    system("mkdir cript/arquivo_gerado");
+  }
+
+  if (!dir3)
+  {
+    system("mkdir cript/arquivo_recebidos");
+  }
+
   TAM_CHAVE = strlen(CHAVE);
   //TAM_TEXTO = strlen(TEXTO);
   menu();
