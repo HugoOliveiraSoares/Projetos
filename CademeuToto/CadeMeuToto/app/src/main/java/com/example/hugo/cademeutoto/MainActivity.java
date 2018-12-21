@@ -1,11 +1,19 @@
 package com.example.hugo.cademeutoto;
 
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.AnimationUtilsCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.ActionMode;
 import android.view.View;
@@ -14,17 +22,32 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.example.hugo.cademeutoto.database.Dados;
+import com.example.hugo.cademeutoto.dominio.entidades.Perdidos;
+import com.example.hugo.cademeutoto.dominio.repositorio.PerdidosRepositorio;
+
+import java.util.List;
 
 import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity
 {
-
     FloatingActionButton fab;
     Button btn1, btn2;
     Animation fabOpen, fabClose, rotateFrente, rotateTras;
     boolean isOpen = false;
+    private ConstraintLayout layoutMain;
+    private RecyclerView lstdados;
+
+    private SQLiteDatabase conexao;
+    private Dados dados;
+    private PerdidosRepositorio perdidosRepositorio;
+
+    private PerdidoAdapter perdidoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,6 +56,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        layoutMain = (ConstraintLayout) findViewById(R.id.layoutMain);
+        lstdados = (RecyclerView) findViewById(R.id.lstdados);
 
       //Recupera o id dos botoẽs
         fab =  (FloatingActionButton) findViewById(R.id.fab);
@@ -61,7 +87,9 @@ public class MainActivity extends AppCompatActivity
             {
                 animateFab();
                 Intent it = new Intent(MainActivity.this, CadastroPerdido.class);
-                startActivity(it);
+                //startActivity(it);
+                startActivityForResult(it, 0);
+
             }
         });
 
@@ -74,6 +102,44 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "Floder clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
+        criarConexao();
+
+        lstdados.setHasFixedSize(true);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        lstdados.setLayoutManager(linearLayoutManager);
+
+        perdidosRepositorio = new PerdidosRepositorio(conexao);
+
+        List<Perdidos> dados = perdidosRepositorio.buscarTodos();
+
+        perdidoAdapter = new PerdidoAdapter(dados);
+
+        lstdados.setAdapter(perdidoAdapter);
+
+    }
+
+    private void criarConexao()
+    {
+        try
+        {
+            dados = new Dados(this);
+
+            conexao = dados.getWritableDatabase();
+
+            Snackbar.make(layoutMain, "Conexão criada com sucesso!", Snackbar.LENGTH_SHORT)
+                    .show();
+
+        }catch(SQLException ex)
+        {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg
+               .setTitle("ERRO!")
+               .setMessage(ex.getMessage())
+               .setNeutralButton("OK", null)
+               .show();
+        }
     }
 
     private void animateFab() // Execução da animação
@@ -97,4 +163,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        List<Perdidos> dados = perdidosRepositorio.buscarTodos();
+        perdidoAdapter = new PerdidoAdapter(dados);
+        lstdados.setAdapter(perdidoAdapter);
+
+    }
 }

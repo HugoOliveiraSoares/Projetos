@@ -2,20 +2,24 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutCadPer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroPerdido"
-    >
+    tools:context=".CadastroPerdido">
 
     <ImageButton
         android:id="@+id/btnimage"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/selector"
-        android:src="@drawable/ic_add_photo"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintEnd_toStartOf="@+id/edtNome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,53 +27,73 @@
         android:id="@+id/edtNome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:ems="10"
+        android:hint="@string/nome_animal"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/txtNomeanimal"
-        app:layout_constraintStart_toStartOf="@+id/txtNomeanimal"
-        app:layout_constraintTop_toBottomOf="@+id/txtNomeanimal" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edtTipoAnimal"
+    <Button
+        android:id="@+id/btnTipoAnimal"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@color/branco"
         android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/txtTipoAnimal"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txtTipoAnimal"
-        app:layout_constraintTop_toBottomOf="@+id/txtTipoAnimal" />
+        android:fontFamily="@font/roboto"
+        android:text="@string/Tipo_Raca"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnimage" />
 
-    <EditText
+    <Button
         android:id="@+id/edtIdade"
+        style="@android:style/Widget.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/branco"
         android:ems="10"
-        app:layout_constraintEnd_toEndOf="@+id/edtTipoAnimal"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtTipoAnimal"
-        app:layout_constraintTop_toBottomOf="@+id/txtIdade" />
+        android:fontFamily="@font/roboto"
+        android:text="@string/idade"
+        android:textColor="@color/preto"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnTipoAnimal"
+        app:layout_constraintStart_toStartOf="@+id/btnTipoAnimal"
+        app:layout_constraintTop_toBottomOf="@+id/btnTipoAnimal" />
 
     <EditText
         android:id="@+id/edtCorPelo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="@string/cor_do_pelo"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/edtIdade"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtIdade"
-        app:layout_constraintTop_toBottomOf="@+id/txtCorPelo" />
+        app:layout_constraintTop_toBottomOf="@+id/edtIdade" />
 
     <EditText
         android:id="@+id/edtDetalhe"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="@string/detalhes"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/edtCorPelo"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtCorPelo"
-        app:layout_constraintTop_toBottomOf="@+id/txtDetalhe" />
+        app:layout_constraintTop_toBottomOf="@+id/edtCorPelo" />
 
     <Button
         android:id="@+id/btnMostreOnde"
@@ -77,84 +101,19 @@
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="35dp"
         android:background="@color/colorPrimary"
+        android:fontFamily="@font/roboto"
         android:text="@string/mostre_onde_perdeu"
-        android:textSize="16sp"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtDetalhe" />
 
-    <TextView
-        android:id="@+id/txtNomeanimal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:text="@string/nome_animal"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtNome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnimage"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/txtTipoAnimal"
-        android:layout_width="0dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:text="Tipo do animal"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNome" />
-
-    <TextView
-        android:id="@+id/txtIdade"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/idade"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtIdade"
-        app:layout_constraintEnd_toEndOf="@+id/edtIdade"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/edtIdade"
-        app:layout_constraintTop_toBottomOf="@+id/edtTipoAnimal" />
-
-    <TextView
-        android:id="@+id/txtCorPelo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/cor_do_pelo"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/edtCorPelo"
-        app:layout_constraintStart_toStartOf="@+id/edtCorPelo"
-        app:layout_constraintTop_toBottomOf="@+id/edtIdade" />
-
-    <TextView
-        android:id="@+id/txtDetalhe"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/detalhes"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtDetalhe"
-        app:layout_constraintEnd_toEndOf="@+id/edtDetalhe"
-        app:layout_constraintStart_toStartOf="@+id/edtDetalhe"
-        app:layout_constraintTop_toBottomOf="@+id/edtCorPelo" />
 
 </android.support.constraint.ConstraintLayout>

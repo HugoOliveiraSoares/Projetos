@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/btrFil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filhote"
+            android:layout_marginTop="8dp"/>
+
+        <RadioButton
+            android:id="@+id/btrAdu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adulto"
+            android:layout_marginTop="8dp"/>
+
+        <RadioButton
+            android:id="@+id/btrIdo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Idoso"
+            android:layout_marginTop="8dp"/>
+    </RadioGroup>
+</android.support.constraint.ConstraintLayout>
